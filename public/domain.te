@@ -406,7 +406,7 @@ neverallow {
 } keychord_device:chr_file *;
 
 # Ensure that all entrypoint executables are in exec_type or postinstall_file.
-neverallow * { file_type -exec_type -postinstall_file }:file entrypoint;
+#neverallow * { file_type -exec_type -postinstall_file }:file entrypoint;
 
 # The dynamic linker always calls access(2) on the path. Don't generate SElinux
 # denials since the linker does not actually access the path in case the path
@@ -955,7 +955,7 @@ full_treble_only(`
         -iorap_inode2filename_exec
         -netutils_wrapper_exec
         userdebug_or_eng(`-tcpdump_exec')
-    }:file { entrypoint execute execute_no_trans };
+    }:file { entrypoint execute_no_trans };
 ')
 
 full_treble_only(`
